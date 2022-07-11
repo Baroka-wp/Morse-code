@@ -48,35 +48,46 @@ def decode_char(char)
   MORSE_CODE[char].capitalize
 end
 
+# x = '.-'
+# puts decode_char(x)
+
 # split sentence in worlds
-def split_world(phrase)
+def split_phrase(phrase)
   if phrase.is_a? String
     phrase.split('   ')
   else
-    put 'Your inpu should be a string in double or single quote !'
+    put 'Your input should be a string in double or single quote !'
   end
+end
+
+# Decode world function
+def decode_word(word)
+  if word.is_a? String
+    word_decode = ''
+    word.split.each do |morse|
+      dc = decode_char(morse)
+      word_decode += dc.to_s
+    end
+  end
+  word_decode
 end
 
 # Create a method to decode an entire word in Morse code,
 # takes a string parameter, and return the string representation.
 
 def decode(phrase)
-  worlds = split_world(phrase)
+  words = split_phrase(phrase)
   phrase_decode = ''
-  worlds.each do |world|
-    world_decode = ''
-    world.chars.each do |morse|
-      dc = decode_char(morse)
-      world_decode += dc.to_s
-    end
-    phrase_decode += "#{world_decode} "
+  words.each do |word|
+    word_decode = decode_word(word)
+    phrase_decode += "#{word_decode} "
   end
-  phrase_decode
+  phrase_decode.strip
 end
 
 # Testing
-decode('-- -.--   -. .- -- .')
-
-# => MY NAME
-PHRASE = '.-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...'.freeze
-print decode(PHRASE) # => A BOX FULL OF RUBIES
+p decode_char('.-') #=> A
+p decode_word('-- -.--') # => MY
+p decode('-- -.--   -. .- -- .') # => MY NAME
+phrase = '.-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...'
+p decode(phrase) # => A BOX FULL OF RUBIES
