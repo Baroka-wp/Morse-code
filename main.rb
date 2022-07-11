@@ -80,4 +80,3 @@ decode('-- -.--   -. .- -- .')
 # => MY NAME
 PHRASE = '.-   -... --- -..-   ..-. ..- .-.. .-..   --- ..-.   .-. ..- -... .. . ...'.freeze
 print decode(PHRASE) # => A BOX FULL OF RUBIES
-
